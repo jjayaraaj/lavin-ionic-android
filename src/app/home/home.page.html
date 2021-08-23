@@ -1,20 +1,180 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
+<ion-header class="ion-no-border">
+  <ion-item lines="none">
+    <ion-avatar slot="end">
+      <ion-img src="assets/curry-guru.png"></ion-img>
+    </ion-avatar>
+    <ion-label>
+      <h2>Lavin </h2>
+      <p>Sea Food.</p>
+    </ion-label>
+  </ion-item>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="ion-padding wrapper">
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <ion-searchbar></ion-searchbar>
+
+
+    <ion-grid class="ion-no-padding">
+      <ion-row class="ion-align-items-baseline">
+        <ion-col size="6">
+          <h4 class="title">
+            Popular
+          </h4>
+        </ion-col>
+        <ion-col size="6">
+          <h4 class="more ion-text-end">
+            View more
+          </h4>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
+
+  <!-- section 1 -->
+  <ion-grid class="ion-no-padding">
+    <ion-row>
+      <ion-col size="12">
+        <ion-slides [options]="options">
+
+          <ion-slide *ngFor="let featured of [1,2,3,4]">
+            <ion-card class="card">
+              <ion-card-content class="ion-text-left">
+
+                <div class="img-wrapper">
+                  <ion-img [src]="featured.images[0].src">
+                  </ion-img>
+                </div>
+
+                <ion-card-title class="title">{{ featured.name }}</ion-card-title>
+                <ion-card-subtitle [innerHTML]='featured.price_html'>
+
+                </ion-card-subtitle>
+                <ion-card-subtitle>
+
+                  <ion-icon name="star" *ngFor="let star of [].constructor(( featured.average_rating / 5 ) * 100)">
+                  </ion-icon>
+
+                </ion-card-subtitle>
+              </ion-card-content>
+            </ion-card>
+          </ion-slide>
+
+
+
+        </ion-slides>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- section2 -->
+
+  <div class="ion-padding-horizontal wrapper">
+
+    <ion-grid class="ion-no-padding">
+      <ion-row class="ion-align-items-baseline">
+        <ion-col size="6">
+          <h4 class="title">
+            Explore Categories
+          </h4>
+        </ion-col>
+        <ion-col size="6">
+          <h4 class="more ion-text-end">
+            Show more
+          </h4>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </div>
+
+  <ion-grid class="ion-no-padding">
+    <ion-row>
+      <ion-col size="12">
+        <ion-slides [options]="categories">
+
+          <ion-slide *ngFor="let category of [1,2,3,5]">
+            <ion-card class="category" color="" style="background-color:transparent;">
+              <ion-card-header class="ion-text-center" style="background-color: #fff;">
+                <ion-img style="height: 40px; " [src]=" category.image.src">
+                </ion-img>
+
+              </ion-card-header>
+              <ion-card-title class="" style="font-size: 1em; color: #f15f2a; padding-top:6px;">{{ category.name}}
+              </ion-card-title>
+              <ion-card-subtitle><small>{{ category.count}} Menu</small></ion-card-subtitle>
+            </ion-card>
+
+          </ion-slide>
+
+          <!-- <ion-slide>
+            <ion-card class=" category" color="primary">
+              <ion-card-header class="ion-text-center">
+                <ion-icon src="assets/cocktail.svg"></ion-icon>
+                <ion-card-title>Drink</ion-card-title>
+                <ion-card-subtitle>Something here</ion-card-subtitle>
+              </ion-card-header>
+            </ion-card>
+          </ion-slide>
+
+          <ion-slide>
+            <ion-card class="category" color="warning">
+              <ion-card-header class="ion-text-center">
+                <ion-icon src="assets/burger.svg"></ion-icon>
+                <ion-card-title>Burger</ion-card-title>
+                <ion-card-subtitle>Something here</ion-card-subtitle>
+              </ion-card-header>
+            </ion-card>
+          </ion-slide>
+
+          <ion-slide>
+            <ion-card class="category" color="success">
+              <ion-card-header class="ion-text-center">
+                <ion-icon src="assets/pizza.svg"></ion-icon>
+                <ion-card-title>Pizza</ion-card-title>
+                <ion-card-subtitle>Something here</ion-card-subtitle>
+              </ion-card-header>
+            </ion-card>
+          </ion-slide>
+
+          <ion-slide>
+            <ion-card class="category" color="tertiary">
+              <ion-card-header class="ion-text-center">
+                <ion-icon src="assets/taco.svg"></ion-icon>
+                <ion-card-title>Mexican</ion-card-title>
+                <ion-card-subtitle>Something here</ion-card-subtitle>
+              </ion-card-header>
+            </ion-card>
+          </ion-slide>
+
+          <ion-slide>
+            <ion-card class="category" color="danger">
+              <ion-card-header class="ion-text-center">
+                <ion-icon src="assets/cookies.svg"></ion-icon>
+                <ion-card-title>Dessert</ion-card-title>
+                <ion-card-subtitle>Something here</ion-card-subtitle>
+              </ion-card-header>
+            </ion-card>
+          </ion-slide>
+
+          <ion-slide>
+            <ion-card class="category" color="secondary">
+              <ion-card-header class="ion-text-center">
+                <ion-icon src="assets/noodle.svg"></ion-icon>
+                <ion-card-title>Noodle</ion-card-title>
+                <ion-card-subtitle>Something here</ion-card-subtitle>
+              </ion-card-header>
+            </ion-card>
+          </ion-slide> -->
+
+
+
+
+
+        </ion-slides>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>

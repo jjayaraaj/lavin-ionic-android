@@ -1,0 +1,16 @@
+ion-searchbar {
+  --box-shadow: none;
+  --border-radius: 12px;
+}
+
+ion-content {
+  --background: #f8f8fa;
+}
+
+ion-spinner {
+  display: flex;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+}

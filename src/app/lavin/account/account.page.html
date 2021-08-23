@@ -1,0 +1,99 @@
+<app-header></app-header>
+
+<ion-content class="ion-no-padding">
+  <div *ngIf="loggedIn; else login;">
+    <ion-item lines="full">
+      <ion-label>
+
+        <h2>{{ user.username | uppercase}}</h2>
+        <p><small>{{ user.email}}</small></p>
+      </ion-label>
+      <!-- <ion-button slot="end" fill="clear" color="curry">Edit</ion-button> -->
+    </ion-item>
+    <ion-list lines="none">
+      <ion-item detail (click)="accountEdit('personal-edit');">
+        <ion-label>Personal Details</ion-label>
+      </ion-item>
+      <ion-item detail (click)="accountEdit('billing-edit');">
+        <ion-label>Billing Address</ion-label>
+      </ion-item>
+      <ion-item detail (click)="accountEdit('shipping');">
+        <ion-label>Shipping Address</ion-label>
+      </ion-item>
+
+    </ion-list>
+
+    <p class="ion-padding-start"><small>PAST ORDERS</small></p>
+
+    <ion-card class=" ion-no-margin" style="box-shadow: none;" *ngFor="let previousOrder of previousOrders">
+
+      <ion-item lines="full">
+        <div>
+          <h6>{{previousOrder.date_created | date}}</h6>
+          <p>{{previousOrder.total}} {{previousOrder.currency_symbol}}</p>
+
+        </div>
+        <ion-text slot="end" style="font-size: .7em;">
+          <ion-icon name="checkmark-circle-outline" color="success"></ion-icon> {{previousOrder.status}}
+        </ion-text>
+
+      </ion-item>
+
+      <div class="ion-padding-horizontal">
+        <span *ngFor="let items of previousOrder.line_items"><small>{{ items.name }} x
+            {{ items.quantity}}, </small></span>
+      </div>
+      <ion-button fill="outline" color="curry" class="ion-margin-top ion-margin-start " size="small">REORDER
+      </ion-button>
+
+      <div style="height: 10px;"></div>
+
+    </ion-card>
+    <div style="height: 10px;"></div>
+    <ion-item lines="none" (click)="onClickLogout()">
+      <ion-label>
+        LOGOUT
+      </ion-label>
+
+      <ion-icon name="power-outline" slot="end"></ion-icon>
+
+    </ion-item>
+  </div>
+  <ng-template #login>
+    <form #loginForm="ngForm" (ngSubmit)="signIn(loginForm)" class="h-100">
+      <ion-img src="assets/lgonbanner.jpg"></ion-img>
+      <ion-card class="ion-padding ion-no-margin" style="box-shadow: none;">
+        <h4>ACCOUNT</h4>
+        <p>Login/Create Account to quicky manage order</p>
+        <ion-list class="ion-no-padding">
+          <ion-item>
+            <ion-label position="floating">Username</ion-label>
+            <ion-input type="text" [(ngModel)]="username" name="username" required #usernameCtrl='ngModel'>
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">password</ion-label>
+            <ion-input type="password" name="password" required [(ngModel)]="password" #passwordCtrl='ngModel'>
+            </ion-input>
+          </ion-item>
+
+
+        </ion-list>
+        <div class="ion-padding-top">
+          <ion-button color="lavin" size="block" type="submit" [disabled]="!loginForm.valid">Sign In
+          </ion-button>
+          <!-- <a [routerLink]="['/reset-password']"><small>Forgot Password?</small></a> -->
+          <a (click)="onClickForgot()"><small>Forgot Password?</small></a>
+
+
+
+        </div>
+      </ion-card>
+      <div class="ion-padding ion-text-center">
+        Don't have an account? <a [routerLink]="['/signup']">SignUp</a>
+
+      </div>
+    </form>
+  </ng-template>
+</ion-content>

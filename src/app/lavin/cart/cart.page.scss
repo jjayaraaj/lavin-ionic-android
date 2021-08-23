@@ -1,0 +1,16 @@
+ion-content {
+  --background: #f8f8fa;
+}
+
+.card {
+  box-shadow: none;
+}
+
+.no-cart {
+  display: flex;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  flex-direction: column;
+}

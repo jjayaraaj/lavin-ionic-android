@@ -1,0 +1,127 @@
+<ion-header class="ion-no-border">
+  <ion-item lines="none">
+    <ion-icon slot="end" name="close" (click)="dismiss()"></ion-icon>
+    <ion-label>
+      <h2> {{ products.name }}</h2>
+      <ion-text color="lavin">
+        <p><b>Rs {{productPrice}}</b></p>
+      </ion-text>
+
+    </ion-label>
+  </ion-item>
+</ion-header>
+<ion-content class="ion-padding">
+  <div>
+    <ion-slides>
+      <ion-slide *ngFor="let productImage of products.images">
+        <ion-img [src]="productImage.src" style=" border-radius: 14px;"></ion-img>
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <ion-item>
+    <ion-label>Select Weight to add to cart</ion-label>
+    <ion-select (ionChange)="onSelectQuantity(products)" [(ngModel)]="quantity">
+      <ion-select-option value="1">500 Gms</ion-select-option>
+      <ion-select-option value="2">1 kg</ion-select-option>
+      <ion-select-option value="3">1.5 kg</ion-select-option>
+      <ion-select-option value="4">2 kg</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item class="item-text-wrap">
+    <ion-text *ngIf="showAlreadyAddedToCart">
+      <p><small>{{addedQuantity}} Added to Cart</small></p>
+    </ion-text>
+    <!-- <div *ngIf="!weightOption; else weightInput; ">{{weight}}</div>
+    <ng-template #weightInput>
+
+      <div class="ion-padding-end">
+        <ion-text clolor="lavin"><small>Select Weight</small></ion-text>
+      </div>
+
+      <ion-select placeholder="Select Weight">
+        <ion-select-option [value]="weight" *ngFor="let weight of this.selectedProduct.attributes[0].options">{{weight}}
+        </ion-select-option>
+
+      </ion-select>
+    </ng-template> -->
+
+
+
+
+    <!-- <ion-grid>
+      <ion-row>
+        <ion-col size-md="12" size="12">
+          <ion-button fill="clear" color="lavin" (click)="changeQty(products, -1)">
+            <ion-icon name="remove-circle"></ion-icon>
+          </ion-button>
+          <ion-text>
+            <small>500 grms</small>
+
+          </ion-text>
+          <ion-button fill="clear" color="lavin" (click)="changeQty(products, 1)">
+            <ion-icon name="add-circle"></ion-icon>
+          </ion-button>
+        </ion-col>
+
+        <ion-col size="12">
+          <ion-select (ionChange)="onSelectQuantity()" [(ngModel)]="quantity">
+            <ion-select-option value="1">500 Gms</ion-select-option>
+            <ion-select-option value="2">1 kg</ion-select-option>
+            <ion-select-option value="3">1.5 kg</ion-select-option>
+            <ion-select-option value="4">2 kg</ion-select-option>
+          </ion-select>
+
+        </ion-col>
+
+
+      </ion-row>
+    </ion-grid> -->
+    <div *ngIf="!showAlreadyAddedToCart else updateButton">
+      <ion-button [disabled]="!selectedQty" color="lavin" size="default" slot="end" (click)="onClickAdd(products)">
+        ADD <ion-icon name="cart"></ion-icon>
+      </ion-button>
+    </div>
+    <ng-template #updateButton>
+      <ion-button [disabled]="!selectedQty" color="lavin" size="default" slot="end" (click)="onClickAdd(products)">
+        Update <ion-icon name="cart"></ion-icon>
+      </ion-button>
+    </ng-template>
+
+  </ion-item>
+
+  <ion-text>
+    <small [innerHTML]="products.description"></small>
+  </ion-text>
+  <!--
+  <div class="">
+    <ion-list style="--background: #fff;">
+      <ion-item style="background-color: #fff;" *ngFor="let related of selectedProduct.related_ids">
+        <ion-thumbnail slot="start">
+
+          <img [src]="" class="pro-img">
+        </ion-thumbnail>
+        <ion-label>
+          <h4><strong>{{related}}</strong></h4>
+
+          <p><small>
+              <ion-icon name="star"></ion-icon>
+            </small></p>
+        </ion-label>
+
+      </ion-item>
+
+    </ion-list>
+  </div> -->
+</ion-content>
+
+<ion-footer class="ion-no-border" *ngIf="showFooter">
+  <ion-toolbar color="lavin">
+    <ion-item color="lavin" lines="none" (click)="gotoCart()">
+      <ion-label> View Cart <ion-icon name="arrow-forward-outline"></ion-icon> {{this.qty}}</ion-label>
+      <ion-text slot="end">{{this.total}} $</ion-text>
+
+    </ion-item>
+
+
+  </ion-toolbar>
+</ion-footer>

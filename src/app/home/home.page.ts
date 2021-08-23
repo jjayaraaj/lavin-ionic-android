@@ -7,6 +7,20 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
+  options = {
+    centeredSlides: true,
+    slidesPerView: 1,
+    spaceBetween: -60,
+  };
+
+  categories = {
+    slidesPerView: 3.5,
+  };
+
+ featuredProducts = [];
+ productCategories = [];
+
+
   constructor() {}
 
 }

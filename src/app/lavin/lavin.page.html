@@ -1,0 +1,25 @@
+<ion-content [fullscreen]="true">
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="main">
+
+        <ion-icon src="/assets/tab-icon-lavin.svg" color="lavin"></ion-icon>
+        <ion-label>Lavin</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="search">
+        <ion-icon name="search-outline"></ion-icon>
+        <ion-label>Search</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="cart">
+        <ion-icon name="cart-outline"></ion-icon>
+        <ion-label>Cart</ion-label>
+        <ion-badge color="lavin" *ngIf="showCartBadge">{{ cartCount$ | async }}</ion-badge>
+      </ion-tab-button>
+      <ion-tab-button tab="account">
+        <ion-icon name="person-outline"></ion-icon>
+        <ion-label>Account</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+
+</ion-content>

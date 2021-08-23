@@ -1,0 +1,99 @@
+<div class="ion-padding-horizontal ion-margin-bottom wrapper">
+  <ion-grid class="ion-no-padding">
+    <ion-row>
+      <ion-col size="12">
+
+
+
+        <ion-slides [options]="categories">
+
+          <ion-slides [options]="categories">
+
+            <ion-slide *ngFor="let category of productCategories" (click)="onClickCategory(category)">
+              <ion-card class="category" color="" style="background-color:transparent;">
+                <ion-card-header class="ion-text-center" style="background-color:#fff;">
+                  <ion-img style="width: 100%;" [src]=" category.image.src">
+                  </ion-img>
+                </ion-card-header>
+                <ion-card-title class="" style="font-size: 1em; color: #f15f2a; padding-top:6px;">{{category.name}}
+                </ion-card-title>
+                <ion-card-subtitle><small>{{category.count}} Items</small></ion-card-subtitle>
+              </ion-card>
+
+            </ion-slide>
+
+            <!-- <ion-slide>
+              <ion-card class=" category" color="primary">
+                <ion-card-header class="ion-text-center">
+                  <ion-icon src="assets/cocktail.svg"></ion-icon>
+                  <ion-card-title>Drink</ion-card-title>
+                  <ion-card-subtitle>Something here</ion-card-subtitle>
+                </ion-card-header>
+              </ion-card>
+            </ion-slide>
+
+            <ion-slide>
+              <ion-card class="category" color="warning">
+                <ion-card-header class="ion-text-center">
+                  <ion-icon src="assets/burger.svg"></ion-icon>
+                  <ion-card-title>Burger</ion-card-title>
+                  <ion-card-subtitle>Something here</ion-card-subtitle>
+                </ion-card-header>
+              </ion-card>
+            </ion-slide>
+
+            <ion-slide>
+              <ion-card class="category" color="success">
+                <ion-card-header class="ion-text-center">
+                  <ion-icon src="assets/pizza.svg"></ion-icon>
+                  <ion-card-title>Pizza</ion-card-title>
+                  <ion-card-subtitle>Something here</ion-card-subtitle>
+                </ion-card-header>
+              </ion-card>
+            </ion-slide>
+
+            <ion-slide>
+              <ion-card class="category" color="tertiary">
+                <ion-card-header class="ion-text-center">
+                  <ion-icon src="assets/taco.svg"></ion-icon>
+                  <ion-card-title>Mexican</ion-card-title>
+                  <ion-card-subtitle>Something here</ion-card-subtitle>
+                </ion-card-header>
+              </ion-card>
+            </ion-slide>
+
+            <ion-slide>
+              <ion-card class="category" color="danger">
+                <ion-card-header class="ion-text-center">
+                  <ion-icon src="assets/cookies.svg"></ion-icon>
+                  <ion-card-title>Dessert</ion-card-title>
+                  <ion-card-subtitle>Something here</ion-card-subtitle>
+                </ion-card-header>
+              </ion-card>
+            </ion-slide>
+
+            <ion-slide>
+              <ion-card class="category" color="secondary">
+                <ion-card-header class="ion-text-center">
+                  <ion-icon src="assets/noodle.svg"></ion-icon>
+                  <ion-card-title>Noodle</ion-card-title>
+                  <ion-card-subtitle>Something here</ion-card-subtitle>
+                </ion-card-header>
+              </ion-card>
+            </ion-slide> -->
+
+
+
+
+
+          </ion-slides>
+
+
+
+
+
+        </ion-slides>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>

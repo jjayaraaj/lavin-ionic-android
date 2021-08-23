@@ -1,0 +1,139 @@
+<app-header></app-header>
+
+<ion-content [fullscreen]="true" scrollEvents="true" appHideHeader="toolbar">
+
+
+  <div class="ion-padding-horizontal wrapper">
+
+    <ion-grid class="ion-no-padding">
+      <ion-row class="ion-align-items-baseline">
+        <ion-col size="12">
+          <h4 class="title">
+            Explore Categories
+          </h4>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+
+  </div>
+
+  <ion-grid class="ion-no-padding">
+    <ion-row>
+      <ion-col size="12">
+        <app-categories></app-categories>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div class="ion-padding wrapper">
+
+    <!-- <ion-searchbar [(ngModel)]='searchQuery' (ionInput)="onSearch($event)" (search)="onSearch($event)"></ion-searchbar> -->
+
+    <ion-img [src]="bannerImage" (click)="onclickSeeAll('recommended', 5)"></ion-img>
+
+    <ion-grid class="ion-no-padding ion-padding-vertical">
+      <ion-row class=" ion-align-items-baseline">
+        <ion-col size="6">
+          <h4 class="title ion-no-margin">
+            <ion-icon name="gift-outline" color="curry"></ion-icon> Popular
+          </h4>
+          <p style="font-size: .7em;" class="ion-no-margin">Explore Lavin Specials </p>
+        </ion-col>
+        <ion-col size="6" class="ion-text-end ">
+          <ion-button fill="clear" class="ion-no-padding" size="small" color="dark"
+            (click)="onclickSeeAll('featured', 5)">
+            See all <ion-icon name="arrow-forward-circle-outline" color="curry"></ion-icon>
+          </ion-button>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </div>
+  <!-- <ion-spinner *ngIf="showFeaturedSpinner; else featured"></ion-spinner>
+  <ng-template #featured> -->
+  <ion-grid class="ion-no-padding">
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" class="ion-text-center">
+
+        <ion-spinner *ngIf="isLoading"></ion-spinner>
+
+
+        <ion-slides [options]="options" *ngIf="!isLoading">
+          <ion-slide *ngFor="let featured of featuredProducts">
+            <ion-card class="card" (click)="onClickProduct(featured)">
+              <ion-card-content class="ion-text-left">
+
+                <div class="img-wrapper">
+                  <ion-img [src]="featured.images[0].src">
+                  </ion-img>
+                </div>
+
+                <ion-card-title class="title">{{ featured.name }}</ion-card-title>
+                <ion-card-subtitle [innerHTML]='featured.price_html'>
+
+                </ion-card-subtitle>
+                <ion-card-subtitle>
+
+                  <ion-icon name="star" *ngFor="let star of [].constructor(( featured.average_rating / 5 ) * 100)">
+                  </ion-icon>
+
+                </ion-card-subtitle>
+              </ion-card-content>
+            </ion-card>
+          </ion-slide>
+
+
+
+        </ion-slides>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- </ng-template> -->
+
+
+
+
+
+  <div class="ion-padding-horizontal wrapper">
+
+    <ion-grid class="ion-no-padding ion-padding-vertical">
+      <ion-row class=" ion-align-items-baseline">
+        <ion-col size="6">
+          <h4 class="title ion-no-margin">
+            <ion-icon name="gift-outline" color="curry"></ion-icon> Recommended
+          </h4>
+          <p style="font-size: .7em;" class="ion-no-margin">Favorite Lavin Seafood</p>
+        </ion-col>
+        <ion-col size="6" class="ion-text-end ">
+          <ion-button fill="clear" class="ion-no-padding" size="small" color="dark"
+            (click)="onclickSeeAll('notFeatured',10)">
+            See all <ion-icon name="arrow-forward-circle-outline" color="curry"></ion-icon>
+          </ion-button>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
+
+  </div>
+
+
+
+  <div class="">
+    <ion-list style="--background: #fff;">
+      <app-products [perPage]="10" [featured]="false"></app-products>
+
+    </ion-list>
+    <div class="ion-padding-horizontal">
+      <ion-button (click)="onclickSeeAll('recommended', 50)" color="lavin" expand="block">SEE MORE RECOMMENDED <ion-icon
+          name="arrow-forward-outline"></ion-icon>
+      </ion-button>
+    </div>
+  </div>
+
+</ion-content>

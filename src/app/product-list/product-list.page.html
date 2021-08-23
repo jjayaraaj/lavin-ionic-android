@@ -1,0 +1,48 @@
+<app-header></app-header>
+
+
+<ion-content [fullscreen]="true">
+
+  <div class="ion-padding wrapper">
+
+    <ion-searchbar [(ngModel)]="searchQuery" debounce="500" (ionInput)="onSearch($event)" (search)="onSearch($event)">
+    </ion-searchbar>
+  </div>
+  <ion-spinner *ngIf="showSpinner else searchContent">
+
+  </ion-spinner>
+  <ng-template #searchContent>
+
+    <div class="">
+      <ion-spinner *ngIf="!hideLoading"></ion-spinner>
+
+      <ion-list *ngIf="hideLoading" style="--background: #fff;">
+        <app-product *ngFor="let product of products" [product]="product"></app-product>
+
+      </ion-list>
+      <!--
+      <ion-list style="--background: #fff;" *ngIf="hideLoading">
+        <ion-item style="background-color: #fff;" *ngFor="let product of products" (click)="onClickProduct(product)">
+          <ion-thumbnail slot="start">
+
+            <img [src]="product.images[0].src" class="pro-img">
+          </ion-thumbnail>
+          <ion-label>
+            <h4><strong>{{product.name}}</strong></h4>
+            <div *ngFor="let proCat of product.categories">
+              <small>{{proCat.name}}</small>
+
+            </div>
+            <p><small>
+                <ion-icon name="star"></ion-icon> {{product.average_rating}}
+              </small></p>
+          </ion-label>
+
+
+
+        </ion-item>
+
+      </ion-list> -->
+    </div>
+  </ng-template>
+</ion-content>

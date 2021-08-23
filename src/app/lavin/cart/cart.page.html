@@ -1,0 +1,104 @@
+<app-header></app-header>
+
+
+<ion-content [fullscreen]="true">
+  <div class="no-cart" *ngIf="showEmptyCartMessage">
+
+    <ion-img src="/assets/no-cart.png" style="width: 50%;"></ion-img>
+
+    <ion-text class="ion-text-center">
+      <p>Your Cart is Empty</p>
+      <p><small>
+          Looks like you have'nt added anything to your cart yet
+        </small></p>
+    </ion-text>
+  </div>
+
+
+
+  <ion-card *ngFor="let item of cartItems; let i = index" class="ion-no-margin ion-margin-vertical card">
+    <ion-item color="light" lines="none">
+      <ion-thumbnail slot="start">
+        <img [src]="item.product.images[0].src" class="pro-img">
+      </ion-thumbnail>
+      <ion-label class="ion-no-margin">
+        <h4><strong>{{item.product.name}}</strong></h4>
+        <h6 *ngIf="item.product.qtyWords; else qty; ">{{item.product.qtyWords}} </h6>
+        <ng-template #qty>
+          <h6>{{item.qtyWords}} </h6>
+        </ng-template>
+      </ion-label>
+      <ion-text color="lavin">
+        Rs {{ item.product.amount}}
+
+      </ion-text>
+      <!-- <ion-select (ionChange)="onSelectQuantity(item, i)" [(ngModel)]="quantity">
+        <ion-select-option *ngFor="let opt of quantityOptions" [value]="opt.count">{{opt.value}}</ion-select-option>
+
+      </ion-select> -->
+      <!-- <ion-select>
+        <ion-select-option [value]="weight" *ngFor="let weight of item.product.attributes[0].options">
+          {{weight}}
+        </ion-select-option>
+      </ion-select> -->
+    </ion-item>
+    <ion-item>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col size-md="3" size="3">
+            <!-- <ion-button fill="clear" color="lavin-yellow" (click)="changeQty(item, i, -1)">
+              <ion-icon name="remove-circle"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" color="curry">
+              {{ item.qty }}
+            </ion-button>
+            <ion-button fill="clear" color="curry" (click)="changeQty(item, i, 1)">
+              <ion-icon name="add-circle"></ion-icon>
+            </ion-button> -->
+            <ion-col size-md="4" class="ion-text-start">
+              <ion-button color="primary" (click)="modify(item, i)">
+                Modify <ion-icon name="create-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+
+          </ion-col>
+          <ion-col size-md="3" class="ion-text-end">
+            <ion-button color="lavin" (click)="removeItem(item, i)">
+              Remove <ion-icon name="close-circle-outline">
+              </ion-icon>
+            </ion-button>
+          </ion-col>
+
+
+        </ion-row>
+      </ion-grid>
+
+    </ion-item>
+  </ion-card>
+
+
+
+
+
+</ion-content>
+<ion-footer *ngIf="!showEmptyCartMessage">
+  <ion-toolbar>
+    <ion-grid class="ion-no-padding">
+
+      <ion-row class="ion-no-padding">
+        <ion-col>
+          <ion-button fill="outline" expand="block" color="warning">
+            Continue Shopping
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button fill="outline" expand="block" color="danger" (click)="checkout()">
+            Checkout
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-toolbar>
+</ion-footer>

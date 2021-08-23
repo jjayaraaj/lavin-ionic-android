@@ -1,0 +1,19 @@
+<ion-item style="background-color: #fff;" (click)="onClickProduct(product)">
+  <ion-thumbnail slot="start">
+
+    <img [src]="product.images[0].src" class="pro-img">
+  </ion-thumbnail>
+  <ion-label>
+    <h4><strong>{{product.name}}</strong></h4>
+    <div *ngFor="let proCat of product.categories">
+      <small>{{proCat.name}}</small>
+
+    </div>
+    <p><small>
+        <ion-icon name="star"></ion-icon> {{product.average_rating}}
+      </small></p>
+  </ion-label>
+
+
+
+</ion-item>

@@ -1,0 +1,94 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar #toolbar>
+    <ion-item lines="none">
+      <ion-avatar slot="end">
+        <img src="assets/curu-guru.png">
+      </ion-avatar>
+      <ion-label>
+        <h2>Lavin</h2>
+        <p>Sea Food</p>
+      </ion-label>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" scrollEvents="true" [appHideHeader]="toolbar">
+
+
+
+
+
+  <div class="ion-no-padding wrapper ion-padding-horizontal ion-padding-top">
+
+    <ion-searchbar [(ngModel)]="searchQuery" debounce="500" (ionInput)="onSearch($event)" (search)="onSearch($event)">
+    </ion-searchbar>
+  </div>
+
+
+  <ion-spinner *ngIf="showSpinner else searchContent">
+
+  </ion-spinner>
+  <ng-template #searchContent>
+    <app-categories></app-categories>
+
+
+
+    <!-- <div class="">
+      <ion-list style="--background: #fff;">
+        <ion-virtual-scroll [items]="products" approxItemHeight="320px">
+          <ion-item style="background-color: #fff;" *virtualItem="let product; let itemBounds = bounds;"
+            (click)="onClickProduct(product)">
+            <ion-thumbnail slot="start">
+
+              <img [src]="product.images[0].src" class="pro-img">
+            </ion-thumbnail>
+            <ion-label>
+              <h4><strong>{{product.name}}</strong></h4>
+              <div *ngFor="let proCat of product.categories">
+                <small>{{proCat.name}}</small>
+
+              </div>
+              <p><small>
+                  <ion-icon name="star"></ion-icon> {{product.average_rating}}
+                </small></p>
+            </ion-label>
+
+
+
+          </ion-item>
+        </ion-virtual-scroll>
+
+      </ion-list>
+    </div> -->
+
+
+
+    <div style="background-color: #fff;" class="ion-margin-bottom">
+      <ion-grid class="ion-no-padding ion-padding">
+        <ion-row class=" ion-align-items-baseline">
+          <ion-col size="6">
+            <h4 class="title ion-no-margin">
+              <ion-icon name="gift-outline" color="curry"></ion-icon> Popular Dishes
+            </h4>
+            <p style="font-size: .7em;" class="ion-no-margin">Explore curryguru dishes</p>
+          </ion-col>
+          <ion-col size="6" class="ion-text-end ">
+            <ion-button fill="clear" class="ion-no-padding" size="small" color="dark"
+              (click)="onclickSeeAll('notFeatured',100)">
+              See all <ion-icon name="arrow-forward-circle-outline" color="curry"></ion-icon>
+            </ion-button>
+
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <app-products></app-products>
+
+    </div>
+
+
+
+
+  </ng-template>
+
+</ion-content>
